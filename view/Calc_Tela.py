@@ -1,5 +1,5 @@
-from PyQt6.QtWidgets import QLCDNumber
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QLCDNumber
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QKeySequence
 
@@ -23,18 +23,47 @@ class TelaPrograma(QMainWindow):
         self.btn_9.clicked.connect(lambda: self.AddNumber(9))
         
 
-    def AddNumber(self, numero):
-        lastNumber = self.lcdNumber.display(numero)
-        if lastNumber == '0':
-            result = str(numero)
-        else:
-            result = lastNumber + str(numero)
-        self.lcdNumber.display(result)
-            
-        
+class Calculadora(QMainWindow):
+    
+    def addNumber(self, number):
+        numberDisplay1 = self.display.setText(number)
+        self.display_2.setText(numberDisplay1)
         
         
     def cleanDisplay(self):
-        self.lcdNumber.display("0")
+        self.display.setText("0")
+        
+    def setOperation(self):
+        result = self.display.text()
+        self.display_2.setText(result)
+        
+    def getNumberDisplay(self, display):
+        num = display.text()
+        if "," in num1:
+            num1 = num1.replace(',', '.')
+            num1 = float(num1)
+        num1 = int(num1) 
+        
+    def setNumberDisplay(self, number):
+        number = str(number)
+        number = number.replace('.', ',')
+        self.display.setText(number)
+        
+    def showResult(self):
+        num1 = self.getNumberDisplay(self.display)
+        num2 = self.getNumberDisplay(self.display_2)
+        
+        result = sum(num1, num2)
+        self.setNumberDisplay(result)
+        
+    def addComma(self):
+        last = self.display.text()
+        if last.count(",") > 0:
+            result = last
+        else:
+            result = last + ","
+        self.display.setText(result)
+        
+    
 
 
