@@ -7,4 +7,5 @@ if __name__ == "__main__":
     tela = TelaPrograma()
     app.exec_()
     
-    
+
+      

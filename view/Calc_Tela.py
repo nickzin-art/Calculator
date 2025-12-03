@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QLCDNumber, QApplication, QMainWindow
 from PyQt5.uic import loadUi
-from funcoes import sum, sub, multiplicar, div
+from funcoes import sum, sub, multiplicar, div, percent
 
 class TelaPrograma(QMainWindow):
     def __init__(self, **kwargs):
@@ -27,11 +27,14 @@ class TelaPrograma(QMainWindow):
         self.btn_sub.clicked.connect(lambda: self.set_operation("-"))
         self.btn_mul.clicked.connect(lambda: self.set_operation("*"))
         self.btn_div.clicked.connect(lambda: self.set_operation("/"))
+        self.btn_percentage.clicked.connect(lambda: self.set_operation("%"))
 
         self.btn_equal.clicked.connect(self.equals)
         self.btn_clear.clicked.connect(self.clear_all)
         self.btn_comma.clicked.connect(self.add_comma)
         self.btn_back.clicked.connect(self.backspace)
+        self.btn_inv.clicked.connect(self.reverses_value)
+        
 
     def atualizar_display(self):
         if self.current_value == "":
@@ -51,6 +54,12 @@ class TelaPrograma(QMainWindow):
         else:
             self.current_value += digit
         self.atualizar_display()
+
+    def reverses_value(self):
+        if self.current_value:
+            number = str(float(self.current_value.replace(",", ".")) * -1).replace(".", ",")
+            self.current_value = number
+            self.atualizar_display()
 
     def add_comma(self):
         if "," not in self.current_value:
@@ -89,6 +98,8 @@ class TelaPrograma(QMainWindow):
 
         if self.operation == "+":
             result = sum(num1, num2)
+        elif self.operation == "%":
+            result = percent(num1, num2)
         elif self.operation == "-":
             result = sub(num1, num2)
         elif self.operation == "*":
