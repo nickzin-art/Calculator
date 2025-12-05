@@ -12,7 +12,7 @@ def multiplicar(num1, num2):
 
 def div(num1, num2):
     if num2 == 0:
-        return "Erro na divisão"
+        return "Erro"     
     return num1 / num2
 
 def percent(num1, total):

@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QLCDNumber, QApplication, QMainWindow
 from PyQt5.uic import loadUi
 from funcoes import sum, sub, multiplicar, div, percent
+from PyQt5.QtCore import QTimer
 
 class TelaPrograma(QMainWindow):
     def __init__(self, **kwargs):
@@ -41,6 +42,11 @@ class TelaPrograma(QMainWindow):
             self.lcdMain.display("0")
         else:
             self.lcdMain.display(self.current_value)
+            
+    def timerClean(self):
+        self.cronometro = QTimer(self)
+        self.cronometro.singleShot(5000, self.clear_all)
+        
 
     def atualizar_historico(self):
         if self.last_value and self.operation:

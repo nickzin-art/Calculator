@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../icon.webp</normaloff>../icon.webp</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">#btn_1, #btn_2, #btn_3, #btn_4, #btn_5, #btn_6, #btn_7, #btn_8, #btn_9, #btn_0, #btn_virgula {
 	background-color: gray;
