@@ -3,10 +3,18 @@ from PyQt5.uic import loadUi
 from funcoes import sum, sub, multiplicar, div, percent
 from PyQt5.QtCore import QTimer
 
+from os import path
+import sys
+
+def loadFile(file):
+    base_path = getattr(sys, "_MEIPASS", path.dirname(path.abspath(__file__)))
+    return path.join(base_path, file)
+
+
 class TelaPrograma(QMainWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        loadUi("view/untitled.ui", self)
+        loadUi(loadFile("untitled.ui"), self)
         self.show()
 
         self.current_value = ""
