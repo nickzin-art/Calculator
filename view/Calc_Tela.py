@@ -14,7 +14,7 @@ def loadFile(file):
 class TelaPrograma(QMainWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        loadUi(loadFile("untitled.ui"), self)
+        loadUi(loadFile("view/untitled.ui"), self)
         self.show()
 
         self.current_value = ""
